@@ -12,39 +12,25 @@
         passo 3 - verificar se já existe um personagem selecionado, se sim, devemos remover a seleção dele 
 */
 
-// OBJETIVO 1 - quamdo clicar no botao do personagem na lista,marcae o botao selecionar
-//passo 1 - pegar os botoes no js pra poder verificar quando o usuario clicar em cima de um deles*/
+const botoes = document.querySelectorAll(".botao");
+const personagens = document.querySelectorAll(".personagem");
 
-const botoes = document.querySelectorAll('.botao');
+botoes.forEach((botao, indice) => {
+	botao.addEventListener("click", () => {
+		desselecionarBotao();
+		desselecionarPersonagem();
 
-//OBJETIVO 2 - quando clicar no botão do personagem mostrar as informações do personagempasso 
-//1 passo - pegar os personagens no JS pra poder mostrar ou esconder ele
-   
-const personagem = document.querySelectorAll(".personagem");
+		botao.classList.add("selecionado");
+		personagens[indice].classList.add("selecionado");
+	});
+});
 
-//passo 2 - adicionar a classe "selecionado" no personagem que o usuário selecionou
+function desselecionarPersonagem() {
+	const personagemSelecionado = document.querySelector(".personagem.selecionado");
+	personagemSelecionado.classList.remove("selecionado");
+}
 
-botoes.forEach((botao, indece) => {
-     botao.addEventListener("click", () => {
-
-
-        //passo 3 - verificar se já existe um personagem selecionado, se sim, devemos remover a seleção dele 
-
-        const botaoSelecionado = document.querySelector(".botao.selecionado");
-        botaoSelecionado.classList.remove("selecionado");
-
-        //passo 2 - adicionar a classe "selecionado" no personagem que o usuário selecionou
-
-       botao.classList.add("selecionado"); 
-      
-      //passo 3 - verificar se já existe um personagem selecionado, se sim, devemos remover a seleção dele 
-
-      const personagemSelecionado = document.querySelector(".personagem.selecionado");
-      personagemSelecionado.classList.remove("selecionado");
-
-       //passo 2 - adicionar a classe "selecionado" no personagem que o usuário selecionou
-
-       personagem[indece].classList.add("selecionado"); 
-     })   
-})
-
+function desselecionarBotao() {
+	const botaoSelecionado = document.querySelector(".botao.selecionado");
+	botaoSelecionado.classList.remove("selecionado");
+}
